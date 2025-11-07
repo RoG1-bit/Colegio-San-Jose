@@ -1,3 +1,6 @@
+using Colegio_San_Jose.Data;
+using Microsoft.EntityFrameworkCore; // <-- Add this using directive
+
 namespace Colegio_San_Jose
 {
     public class Program
@@ -8,6 +11,9 @@ namespace Colegio_San_Jose
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
