@@ -23,7 +23,7 @@ Características Principales
 - **Frontend**: Bootstrap 5, Chart.js
 - **Lenguaje**: C# 12.0
 
-## ?? Paquetes NuGet
+## Paquetes NuGet
 
 ```xml
 <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
@@ -54,7 +54,7 @@ Características Principales
 - NotaFinal (decimal(5,2))
 - Observaciones (nvarchar)
 
-## ?? Instalación y Configuración
+## Instalación y Configuración
 
 ### Requisitos Previos
 - .NET 8.0 SDK o superior
