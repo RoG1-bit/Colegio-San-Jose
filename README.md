@@ -1,21 +1,21 @@
-# ?? Sistema de GestiÛn AcadÈmica - Colegio San JosÈ
+ Sistema de Gesti√≥n Acad√©mica - Colegio San Jos√©
 
-Sistema web desarrollado en **ASP.NET Core MVC** con **Entity Framework Core** para la gestiÛn de expedientes acadÈmicos del Colegio San JosÈ.
+Sistema web desarrollado en **ASP.NET Core MVC** con **Entity Framework Core** para la gesti√≥n de expedientes acad√©micos del Colegio San Jos√©.
 
-## ?? DescripciÛn
+Descripci√≥n
 
-El sistema permite mantener un registro digital de los alumnos, las materias ofrecidas por la instituciÛn y los expedientes acadÈmicos que asocian a cada estudiante con sus materias cursadas, incluyendo calificaciones y observaciones.
+El sistema permite mantener un registro digital de los alumnos, las materias ofrecidas por la instituci√≥n y los expedientes acad√©micos que asocian a cada estudiante con sus materias cursadas, incluyendo calificaciones y observaciones.
 
-## ? CaracterÌsticas Principales
+Caracter√≠sticas Principales
 
-- ? **GestiÛn de Alumnos**: CRUD completo (Crear, Leer, Actualizar, Eliminar)
-- ? **GestiÛn de Materias**: Registro de materias y docentes asignados
-- ? **GestiÛn de Expedientes**: RelaciÛn entre alumnos y materias con calificaciones
-- ? **Vista de Promedios**: C·lculo autom·tico del promedio de notas por alumno
-- ? **Gr·ficas EstadÌsticas**: VisualizaciÛn de promedios con Chart.js
-- ? **Interfaz Intuitiva**: DiseÒo responsivo con Bootstrap 5
+- **Gesti√≥n de Alumnos**: CRUD completo (Crear, Leer, Actualizar, Eliminar)
+- **Gesti√≥n de Materias**: Registro de materias y docentes asignados
+- **Gesti√≥n de Expedientes**: Relaci√≥n entre alumnos y materias con calificaciones
+- **Vista de Promedios**: C√°lculo autom√°tico del promedio de notas por alumno
+- **Gr√°ficas Estad√≠sticas**: Visualizaci√≥n de promedios con Chart.js
+- **Interfaz Intuitiva**: Dise√±o responsivo con Bootstrap 5
 
-## ??? TecnologÌas Utilizadas
+## Tecnolog√≠as Utilizadas
 
 - **Framework**: ASP.NET Core 8.0 MVC
 - **ORM**: Entity Framework Core 9.0
@@ -33,7 +33,7 @@ El sistema permite mantener un registro digital de los alumnos, las materias ofr
 <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
 ```
 
-## ??? Estructura de la Base de Datos
+## Estructura de la Base de Datos
 
 ### Tabla: Alumnos
 - **AlumnoId** (PK, int, Identity)
@@ -54,14 +54,14 @@ El sistema permite mantener un registro digital de los alumnos, las materias ofr
 - NotaFinal (decimal(5,2))
 - Observaciones (nvarchar)
 
-## ?? InstalaciÛn y ConfiguraciÛn
+## ?? Instalaci√≥n y Configuraci√≥n
 
 ### Requisitos Previos
 - .NET 8.0 SDK o superior
 - SQL Server o SQL Server Express
 - Visual Studio 2022 o Visual Studio Code
 
-### Pasos de InstalaciÛn
+### Pasos de Instalaci√≥n
 
 1. **Clonar el repositorio**
 ```bash
@@ -74,7 +74,7 @@ cd Colegio-San-Jose
 dotnet restore
 ```
 
-3. **Configurar la cadena de conexiÛn**
+3. **Configurar la cadena de conexi√≥n**
 
 Editar `appsettings.json` si es necesario:
 ```json
@@ -91,7 +91,7 @@ cd "Colegio San Jose"
 dotnet ef database update
 ```
 
-5. **Ejecutar la aplicaciÛn**
+5. **Ejecutar la aplicaci√≥n**
 ```bash
 dotnet run
 ```
@@ -101,76 +101,76 @@ dotnet run
 https://localhost:5001
 ```
 
-## ?? Funcionalidades del Sistema
+## Funcionalidades del Sistema
 
-### 1. GestiÛn de Alumnos
+### 1. Gesti√≥n de Alumnos
 - Lista de todos los alumnos registrados
 - Formulario para agregar nuevos alumnos
-- EdiciÛn de datos de alumnos existentes
-- EliminaciÛn de registros de alumnos
-- VisualizaciÛn de detalles completos
+- Edici√≥n de datos de alumnos existentes
+- Eliminaci√≥n de registros de alumnos
+- Visualizaci√≥n de detalles completos
 
-### 2. GestiÛn de Materias
+### 2. Gesti√≥n de Materias
 - Lista de materias disponibles
 - Registro de nuevas materias con docente asignado
-- ActualizaciÛn de informaciÛn de materias
-- EliminaciÛn de materias
+- Actualizaci√≥n de informaci√≥n de materias
+- Eliminaci√≥n de materias
 
-### 3. GestiÛn de Expedientes
+### 3. Gesti√≥n de Expedientes
 - Vista completa mostrando:
   - Nombre completo del alumno y grado
   - Nombre de la materia y docente
-  - Nota final con cÛdigo de colores
+  - Nota final con c√≥digo de colores
   - Observaciones del docente
-- Formulario para crear expedientes (selecciÛn de alumno y materia)
-- EdiciÛn de notas y observaciones
-- EliminaciÛn de expedientes
+- Formulario para crear expedientes (selecci√≥n de alumno y materia)
+- Edici√≥n de notas y observaciones
+- Eliminaci√≥n de expedientes
 
 ### 4. Vista de Promedios
 - Tabla con promedio de notas por alumno
 - Ordenamiento por mejor promedio
-- Indicadores de estado acadÈmico (Excelente, Muy Bueno, Bueno, etc.)
-- Gr·fica de barras con Chart.js mostrando los promedios visualmente
+- Indicadores de estado acad√©mico (Excelente, Muy Bueno, Bueno, etc.)
+- Gr√°fica de barras con Chart.js mostrando los promedios visualmente
 
-## ?? Gr·ficas EstadÌsticas
+## Gr√°ficas Estad√≠sticas
 
-El sistema incluye gr·ficas generadas con **Chart.js** que muestran:
-- Promedio de notas por alumno (gr·fico de barras)
-- CÛdigo de colores para identificar rendimiento acadÈmico
-- VisualizaciÛn responsiva adaptable a diferentes dispositivos
+El sistema incluye gr√°ficas generadas con **Chart.js** que muestran:
+- Promedio de notas por alumno (gr√°fico de barras)
+- C√≥digo de colores para identificar rendimiento acad√©mico
+- Visualizaci√≥n responsiva adaptable a diferentes dispositivos
 
-## ?? Relaciones del Modelo
+## Relaciones del Modelo
 
-El sistema implementa una relaciÛn **muchos a muchos** entre Alumnos y Materias a travÈs de la tabla Expedientes:
+El sistema implementa una relaci√≥n **muchos a muchos** entre Alumnos y Materias a trav√©s de la tabla Expedientes:
 
 ```
 Alumno (1) ----< (N) Expediente (N) >---- (1) Materia
 ```
 
-## ?? Validaciones Implementadas
+## Validaciones Implementadas
 
 - Campos obligatorios en todos los formularios
-- ValidaciÛn de rango para notas (0-100)
-- ValidaciÛn de fechas
-- Mensajes de error personalizados en espaÒol
-- ProtecciÛn contra ataques de sobreposteo (overposting)
-- Tokens antifalsificaciÛn en formularios
+- Validaci√≥n de rango para notas (0-100)
+- Validaci√≥n de fechas
+- Mensajes de error personalizados en espa√±ol
+- Protecci√≥n contra ataques de sobreposteo (overposting)
+- Tokens antifalsificaci√≥n en formularios
 
-## ?? Autor
+## Autor
 
-**Roger RamÌrez**
+**Roger Ram√≠rez**
 - GitHub: [@RoG1-bit](https://github.com/RoG1-bit)
 
-## ?? Licencia
+## Licencia
 
-Este proyecto fue desarrollado como parte de una pr·ctica acadÈmica.
+Este proyecto fue desarrollado como parte de una pr√°ctica acad√©mica.
 
-## ?? Agradecimientos
+## Agradecimientos
 
-- Colegio San JosÈ
+- Colegio San Jos√©
 - Profesores del curso de desarrollo web
 - Comunidad de ASP.NET Core
 
 ---
 
-? Si este proyecto te fue ˙til, considera darle una estrella en GitHub!
+ Si este proyecto te fue √∫til, considera darle una estrella en GitHub!
