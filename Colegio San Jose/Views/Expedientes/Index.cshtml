@@ -1,0 +1,71 @@
+@model IEnumerable<Colegio_San_Jose.Models.Expediente>
+
+@{
+    ViewData["Title"] = "Expedientes Académicos";
+}
+
+<h1> Expedientes Académicos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary"> Crear Nuevo Expediente</a>
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Alumno</th>
+                    <th>Materia</th>
+                    <th>Nota Final</th>
+                    <th>Observaciones</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        <strong>@(item.Alumno != null ? item.Alumno.Nombre + " " + item.Alumno.Apellido : "N/A")</strong>
+                        <br />
+                        <small class="text-muted">Grado: @(item.Alumno?.Grado ?? "N/A")</small>
+                    </td>
+                    <td>
+                        <strong>@(item.Materia?.NombreMateria ?? "N/A")</strong>
+                        <br />
+                        <small class="text-muted">Docente: @(item.Materia?.Docente ?? "N/A")</small>
+                    </td>
+                    <td class="text-center">
+                        @{
+                            var badge = "";
+                            if (item.NotaFinal >= 90) badge = "bg-success";
+                            else if (item.NotaFinal >= 80) badge = "bg-info";
+                            else if (item.NotaFinal >= 70) badge = "bg-warning";
+                            else if (item.NotaFinal >= 60) badge = "bg-secondary";
+                            else badge = "bg-danger";
+                        }
+                        <span class="badge @badge fs-6">@item.NotaFinal.ToString("F2")</span>
+                    </td>
+                    <td>
+                        @(string.IsNullOrEmpty(item.Observaciones) ? "Sin observaciones" : item.Observaciones)
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a asp-action="Edit" asp-route-id="@item.ExpedienteId" class="btn btn-sm btn-warning">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.ExpedienteId" class="btn btn-sm btn-info">Detalles</a>
+                            <a asp-action="Delete" asp-route-id="@item.ExpedienteId" class="btn btn-sm btn-danger">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info" role="alert">
+                No hay expedientes registrados. Haga clic en "Crear Nuevo Expediente" para comenzar.
+            </div>
+        }
+    </div>
+</div>

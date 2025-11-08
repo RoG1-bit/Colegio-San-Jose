@@ -1,0 +1,165 @@
+@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Promedio de Notas por Alumno";
+}
+
+<h1>Promedio de Notas por Alumno</h1>
+
+<p>
+    <a asp-action="Index" class="btn btn-secondary">Volver a Lista de Alumnos</a>
+</p>
+
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">?? Estadísticas Académicas</h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre Completo</th>
+                    <th>Grado</th>
+                    <th>Cantidad de Materias</th>
+                    <th>Promedio</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int posicion = 1; }
+                @foreach (var item in Model)
+                {
+                    var badge = "";
+                    var estadoTexto = "";
+                    
+                    if (item.Promedio >= 90)
+                    {
+                        badge = "bg-success";
+                        estadoTexto = "Excelente";
+                    }
+                    else if (item.Promedio >= 80)
+                    {
+                        badge = "bg-info";
+                        estadoTexto = "Muy Bueno";
+                    }
+                    else if (item.Promedio >= 70)
+                    {
+                        badge = "bg-warning";
+                        estadoTexto = "Bueno";
+                    }
+                    else if (item.Promedio >= 60)
+                    {
+                        badge = "bg-secondary";
+                        estadoTexto = "Regular";
+                    }
+                    else
+                    {
+                        badge = "bg-danger";
+                        estadoTexto = "Necesita Mejorar";
+                    }
+
+                    <tr>
+                        <td>@posicion</td>
+                        <td><strong>@item.NombreCompleto</strong></td>
+                        <td>@item.Grado</td>
+                        <td class="text-center">@item.CantidadMaterias</td>
+                        <td class="text-center">
+                            <strong>@item.Promedio.ToString("F2")</strong>
+                        </td>
+                        <td>
+                            <span class="badge @badge">@estadoTexto</span>
+                        </td>
+                    </tr>
+                    posicion++;
+                }
+            </tbody>
+        </table>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info" role="alert">
+                No hay datos de promedios disponibles. Agregue alumnos y expedientes primero.
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Sección de Gráfica -->
+@if (Model.Any())
+{
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">?? Gráfica de Promedios</h5>
+        </div>
+        <div class="card-body">
+            <canvas id="promediosChart" style="max-height: 400px;"></canvas>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('promediosChart');
+        if (ctx) {
+            var data = @Html.Raw(Json.Serialize(Model.Select(x => new { 
+                nombre = x.NombreCompleto, 
+                promedio = x.Promedio 
+            })));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(x => x.nombre),
+                    datasets: [{
+                        label: 'Promedio',
+                        data: data.map(x => x.promedio),
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 10
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Promedio de Notas por Alumno',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}

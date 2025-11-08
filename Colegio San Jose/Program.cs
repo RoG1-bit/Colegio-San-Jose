@@ -1,5 +1,5 @@
 using Colegio_San_Jose.Data;
-using Microsoft.EntityFrameworkCore; // <-- Add this using directive
+using Microsoft.EntityFrameworkCore;
 
 namespace Colegio_San_Jose
 {
@@ -34,7 +34,7 @@ namespace Colegio_San_Jose
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Alumnos}/{action=Index}/{id?}");
 
             app.Run();
         }
